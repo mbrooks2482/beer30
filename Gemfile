@@ -66,6 +66,8 @@ gem 'crono'
 gem 'friendly_id', '~> 5.1.0'
 # Use Paperclip for file attachments
 gem 'paperclip', '~> 4.3'
+# User bower for web asset management
+gem 'bower-rails', '~> 0.10.0'
 
 group :production do
   gem 'mailgun_rails'

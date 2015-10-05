@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151004124812) do
+ActiveRecord::Schema.define(version: 20151005121705) do
 
   create_table "crono_jobs", force: :cascade do |t|
     t.string   "job_id",            null: false
@@ -50,5 +50,17 @@ ActiveRecord::Schema.define(version: 20151004124812) do
   end
 
   add_index "lights", ["name"], name: "index_lights_on_name"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",            null: false
+    t.string   "name"
+    t.boolean  "admin"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
 end

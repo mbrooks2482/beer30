@@ -6,10 +6,12 @@ table
       th
       th
       th
+      th
 
   tbody
     - @lights.each do |light|
       tr
+        td = light.name
         td = link_to 'Show', light
         td = link_to 'Edit', edit_light_path(light)
         td = link_to 'Destroy', light, data: {:confirm => 'Are you sure?'}, :method => :delete

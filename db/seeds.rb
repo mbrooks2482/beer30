@@ -6,4 +6,5 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-beer30 = Light.create({name: 'beer30'})
+me = User.create({email: 'zan.loy@sparcedge.com', name: 'Zan Loy', admin: true})
+beer30 = Light.create({name: 'beer30', owner: me.id})

@@ -5,6 +5,7 @@ class CreateLights < ActiveRecord::Migration
       t.text :desc
       t.string :state, default: :red
       t.string :text
+      t.integer :owner
 
       t.timestamps null: false
     end

@@ -50,6 +50,7 @@ GEM
       sass (>= 3.3.0)
     bootstrap-social-rails (4.8.0)
       railties (>= 3.1)
+    bower-rails (0.10.0)
     builder (3.2.2)
     cancancan (1.12.0)
     capistrano (3.4.0)
@@ -378,6 +379,7 @@ DEPENDENCIES
   bcrypt
   bootstrap-sass (~> 3.3.4)
   bootstrap-social-rails
+  bower-rails (~> 0.10.0)
   cancancan
   capistrano-crono
   capistrano-rails
