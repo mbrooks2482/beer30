@@ -8,37 +8,33 @@ html
 
     body
       .container
-        - if @current_user
-          nav.navbar-inverse role='navigation'
-            .container-fluid
-              .navbar-header
-                button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1"
-                  span class="sr-only" Toggle navigation
-                  span class="icon-bar"
-                  span class="icon-bar"
-                  span class="icon-bar"
-                a.navbar-brand[href='/'] TaP
-              .collapse.navbar-collapse id='navbar-collapse-1'
-                - if @current_user
-                  ul.nav.navbar-nav
-                    - for project in @navbar_projects
-                      li = link_to project.name, project_path(project)
-                    /- if is_admin?
-                      /li class="#{is_active? 'admin'}"
-                        /= link_to admin_path do
-                          /==> glyphicon :king
-                          /' Admin
-                .nav.navbar-nav.navbar-right
-                  p class='navbar-text'
-                    | #{t('signed_in_as')} #{link_to @current_user.name_or_email, user_path(@current_user), class: 'text-muted'} &nbsp;
-                    = link_to signout_path, class: 'navbar-link' do
-                      i.octicon.octicon-sign-out
+        nav.navbar-inverse role='navigation'
+          .container-fluid
+            .navbar-header
+              button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1"
+                span class="sr-only" Toggle navigation
+                span class="icon-bar"
+                span class="icon-bar"
+                span class="icon-bar"
+              a.navbar-brand[href='/'] Statuses
+            .collapse.navbar-collapse id='navbar-collapse-1'
+              - if @current_user
+                ul.nav.navbar-nav
+                  li = link_to 'Lights', lights_path
+                  /- if is_admin?
+                    /li class="#{is_active? 'admin'}"
+                      /= link_to admin_path do
+                        /==> glyphicon :king
+                        /' Admin
+              .nav.navbar-nav.navbar-right
+                p class='navbar-text'
+                  | #{t('signed_in_as')} #{link_to @current_user.name_or_email, user_path(@current_user), class: 'text-muted'} &nbsp;
+                  = link_to signout_path, class: 'navbar-link' do
+                    i.octicon.octicon-sign-out
 
         == render 'layouts/flash_messages'
         == yield
 
     footer.footer
       .container
-        p.text-muted
-          ==> glyphicon :'copyright-mark'
-          ' 2015 Sparc, LLC
+        p.text-muted &copy; 2015 Sparc, LLC

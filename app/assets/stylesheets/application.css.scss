@@ -19,8 +19,9 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "sweet-alert";
+@import "octicons/octicons/sprockets-octicons";
 @import "*";
 
-html {
+body {
   background-color: black;
 }
