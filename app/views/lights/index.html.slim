@@ -1,0 +1,19 @@
+h1 Listing lights
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @lights.each do |light|
+      tr
+        td = link_to 'Show', light
+        td = link_to 'Edit', edit_light_path(light)
+        td = link_to 'Destroy', light, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Light', new_light_path
