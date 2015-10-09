@@ -1,4 +1,7 @@
 class LightsController < ApplicationController
+
+  load_and_authorize_resource
+  
   before_action :set_light, only: [:show, :edit, :update, :destroy]
 
   # GET /lights

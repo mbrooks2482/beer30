@@ -2,8 +2,8 @@
   .status_text class="alert alert-danger"
     = @light.text
 
+- if can? :manage, @light
+  p ADMIN!
+
 .status_light
   = image_tag "lights/#{@light.state}.svg"
-= link_to 'Edit', edit_light_path(@light)
-'|
-= link_to 'Back', lights_path
