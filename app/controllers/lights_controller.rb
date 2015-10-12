@@ -43,6 +43,7 @@ class LightsController < ApplicationController
   def update
     respond_to do |format|
       if @light.update(light_params)
+        @light.fire_state_event(new_state_param)
         format.html { redirect_to @light }
         format.json { render :show, status: :ok, location: @light }
       else
@@ -53,12 +54,8 @@ class LightsController < ApplicationController
   end
 
   def change
-    if Light::ALLOWED.include? color_param
-      @light.state = color_param
-      @light.text = ''
-    end
-    @light.save
-    redirect_to light_path(@light)
+    @light.fire_state_event(color_param)
+    redirect_to @light
   end
 
   def watch
@@ -92,6 +89,17 @@ class LightsController < ApplicationController
 
     def color_param
       params.require(:color)
+    end
+
+    def new_state_param
+      # This is some hacky ass shit right here. Why can't I use am img as a
+      # submit button and pass a value as well?
+      @light.state_paths.to_states.each do |state|
+        if params.include? "#{state.to_s}.x"
+          return state.to_s
+        end
+      end
+      return nil
     end
 
 end

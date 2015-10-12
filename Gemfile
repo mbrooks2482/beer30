@@ -58,6 +58,8 @@ gem 'sweetalert-rails'
 gem 'sweet-alert-confirm'
 # Use jquery autocomplete to make shit nice
 gem 'rails-jquery-autocomplete'
+# Use state_machine for state
+gem 'state_machine'
 # Use slack-notifier to alert the slack channel of new changes
 gem 'slack-notifier'
 # Use Crono for scheduled tasks
