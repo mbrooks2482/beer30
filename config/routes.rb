@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :lights
   get '/lights/:id/change/:color', to: 'lights#change', as: 'change_light'
 
+  resources :users
+  
   resources :sessions, only: [:create, :destroy]
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')

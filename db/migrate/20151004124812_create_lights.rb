@@ -5,7 +5,6 @@ class CreateLights < ActiveRecord::Migration
       t.text :desc
       t.string :state, default: :red
       t.string :text, null: false, default: ''
-      t.integer :owner
       t.string :default_red
       t.string :default_yellow
       t.string :default_green

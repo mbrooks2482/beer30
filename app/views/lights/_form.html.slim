@@ -6,5 +6,20 @@
     /= f.input :state, collection: [:red, :yellow, :green], as: :radio_buttons
     = f.input :text, value: ''
 
+  - if can? :admin, @light
+    h2 Default Text
+    = f.input :default_red
+    = f.input :default_yellow
+    = f.input :default_green
+
+    h2 Operators
+    #operators
+      = f.simple_fields_for :operators do |operator|
+        = render 'operator_fields', f: operator
+      .links
+        = link_to_add_association f, :operators do
+          i.octicon.octicon-plus>
+          ' Add Operator
+
   .form-actions
     = f.button :submit

@@ -17,4 +17,5 @@
 //= require sweet-alert-confirm
 //= autocomplete-rails
 //= require bootstrap-sprockets
+//= require cocoon
 //= require_tree .

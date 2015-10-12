@@ -4,28 +4,21 @@ class LightsController < ApplicationController
 
   before_action :set_light, only: [:show, :edit, :update, :destroy]
 
-  # GET /lights
-  # GET /lights.json
   def index
     @lights = Light.all
   end
 
-  # GET /lights/1
-  # GET /lights/1.json
   def show
   end
 
-  # GET /lights/new
   def new
     @light = Light.new
   end
 
-  # GET /lights/1/edit
   def edit
+    @users = User.all
   end
 
-  # POST /lights
-  # POST /lights.json
   def create
     @light = Light.new(light_params)
 
@@ -40,8 +33,6 @@ class LightsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /lights/1
-  # PATCH/PUT /lights/1.json
   def update
     respond_to do |format|
       if @light.update(light_params)
@@ -63,8 +54,6 @@ class LightsController < ApplicationController
     redirect_to light_path(@light)
   end
 
-  # DELETE /lights/1
-  # DELETE /lights/1.json
   def destroy
     @light.destroy
     respond_to do |format|
@@ -81,7 +70,7 @@ class LightsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def light_params
-      params.require(:light).permit(:name, :state, :text)
+      params.require(:light).permit(:name, :state, :text, operators_attributes: [:id, :user_id, :admin, :_destroy])
     end
 
     def color_param

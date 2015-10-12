@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151005121705) do
+ActiveRecord::Schema.define(version: 20151012155500) do
 
   create_table "crono_jobs", force: :cascade do |t|
     t.string   "job_id",            null: false
@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 20151005121705) do
     t.text     "desc"
     t.string   "state",          default: "red"
     t.string   "text",           default: "",    null: false
-    t.integer  "owner"
     t.string   "default_red"
     t.string   "default_yellow"
     t.string   "default_green"
@@ -54,6 +53,17 @@ ActiveRecord::Schema.define(version: 20151005121705) do
   end
 
   add_index "lights", ["name"], name: "index_lights_on_name"
+
+  create_table "operators", force: :cascade do |t|
+    t.integer  "light_id"
+    t.integer  "user_id"
+    t.boolean  "admin",      default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "operators", ["light_id"], name: "index_operators_on_light_id"
+  add_index "operators", ["user_id"], name: "index_operators_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                            null: false

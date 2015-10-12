@@ -30,11 +30,16 @@ class Ability
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
 
     user ||= User.new
-    
+
     if user.admin?
       can :manage, :all
     else
       can :read, Light
+    end
+
+    user.operators.each do |operator|
+      can :manage, operator.light
+      can :admin, operator.light if operator.admin
     end
 
   end

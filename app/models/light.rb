@@ -7,6 +7,12 @@ class Light < ActiveRecord::Base
 
   before_save :update_text
 
+  # Associations
+  has_many :operators
+  has_many :users, through: :operators
+
+  accepts_nested_attributes_for :operators, reject_if: :all_blank, allow_destroy: true
+
   private
 
   def update_text

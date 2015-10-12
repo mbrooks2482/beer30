@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
 
+  # Associations
+  has_many :operators
+  has_many :lights, through: :operators
+
   def self.from_omniauth(auth)
     # Validate the only omniauth logins are allowed from sparcedge.com
     if auth.info.email.split('@')[1] != 'sparcedge.com'

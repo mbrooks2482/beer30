@@ -1,0 +1,8 @@
+.row
+  .col-md-6
+    = f.association :user, collection: User.all, prompt: 'Select User', label: false
+  .col-md-5
+    = f.input :admin
+  .col-md-1
+    = link_to_remove_association f do
+      i.octicon.octicon-trashcan
