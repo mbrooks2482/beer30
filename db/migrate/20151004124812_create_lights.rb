@@ -8,6 +8,8 @@ class CreateLights < ActiveRecord::Migration
       t.string :default_red
       t.string :default_yellow
       t.string :default_green
+      t.integer :operators_count, default: 0
+      t.integer :watchers_count, default: 0
 
       t.timestamps null: false
     end

@@ -1,0 +1,11 @@
+table.lightstab
+  thead
+    tr
+      th
+      th
+
+  tbody
+    - table.each do |light|
+      tr
+        td = image_tag("circles/#{light.state}.png")
+        td = link_to light.name, light

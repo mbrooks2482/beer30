@@ -1,13 +1,12 @@
 h1 Traffic Lights
 
-table.lightstab
-  thead
-    tr
-      th
-      th
+- if @operating and @operating.count > 0
+  h2 Your Lights
+  = render partial: 'table', object: @operating
 
-  tbody
-    - @lights.each do |light|
-      tr
-        td = image_tag("circles/#{light.state}.png")
-        td = link_to light.name, light
+- if @watching and @watching.count > 0
+  h2 Watched Lights
+  = render partial: 'table', object: @watching
+
+h2 All Lights
+= render partial: 'table', object: @lights

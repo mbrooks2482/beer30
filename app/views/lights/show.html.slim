@@ -2,16 +2,27 @@
   /.status_text class="alert #{alert_state(@light.state)}"
     /= @light.text
 
-- if can? :manage, @light
-  .row.actionbar
-    .col-md-6
+.row.actionbar
+  .col-md-6
+    - if can? :manage, @light
       ' Quick Change:
       => link_to image_tag('circles/red.png'), change_light_path(@light, :red)
       => link_to image_tag('circles/yellow.png'), change_light_path(@light, :yellow)
       => link_to image_tag('circles/green.png'), change_light_path(@light, :green)
-    .col-md-6
-      .pull-right
-        = link_to 'Edit', edit_light_path(@light), class: 'btn btn-default'
+  .col-md-6
+    .pull-right
+      - if can? :watch, @light
+        - if @light.watched_by? @current_user
+          => link_to unwatch_light_path(@light), class: 'btn btn-default' do
+            i.octicon.octicon-mute>
+            ' Unwatch
+        - else
+          => link_to watch_light_path(@light), class: 'btn btn-default' do
+            i.octicon.octicon-unmute>
+            ' Watch
+      - if can? :manage, @light
+        => link_to 'Edit', edit_light_path(@light), class: 'btn btn-default'
+
 
 .status_light
   = image_tag "lights/#{@light.state}.svg"

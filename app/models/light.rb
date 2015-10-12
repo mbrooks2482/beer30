@@ -10,8 +10,13 @@ class Light < ActiveRecord::Base
   # Associations
   has_many :operators
   has_many :users, through: :operators
+  has_many :watchers
 
   accepts_nested_attributes_for :operators, reject_if: :all_blank, allow_destroy: true
+
+  def watched_by?(user)
+    self.watchers.where(user: user).count > 0 ? true : false
+  end
 
   private
 

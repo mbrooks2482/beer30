@@ -1,4 +1,4 @@
-class Operator < ActiveRecord::Base
+class Watcher < ActiveRecord::Base
 
   # Associations
   belongs_to :light, counter_cache: true

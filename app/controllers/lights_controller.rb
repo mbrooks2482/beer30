@@ -6,6 +6,13 @@ class LightsController < ApplicationController
 
   def index
     @lights = Light.all
+    if @current_user
+      @operating = @current_user.operating_lights
+      @watching = @current_user.watching_lights
+    else
+      @operating = nil
+      @watching = nil
+    end
   end
 
   def show
@@ -52,6 +59,16 @@ class LightsController < ApplicationController
     end
     @light.save
     redirect_to light_path(@light)
+  end
+
+  def watch
+    Watcher.create(user: @current_user, light: @light) unless Watcher.where(user: @current_user, light: @light).count > 0
+    redirect_to @light
+  end
+
+  def unwatch
+    Watcher.where(user: @current_user, light: @light).destroy_all
+    redirect_to @light
   end
 
   def destroy

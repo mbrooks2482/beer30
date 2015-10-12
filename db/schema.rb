@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151012155500) do
+ActiveRecord::Schema.define(version: 20151012184329) do
 
   create_table "crono_jobs", force: :cascade do |t|
     t.string   "job_id",            null: false
@@ -41,15 +41,17 @@ ActiveRecord::Schema.define(version: 20151012155500) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
 
   create_table "lights", force: :cascade do |t|
-    t.string   "name",                           null: false
+    t.string   "name",                            null: false
     t.text     "desc"
-    t.string   "state",          default: "red"
-    t.string   "text",           default: "",    null: false
+    t.string   "state",           default: "red"
+    t.string   "text",            default: "",    null: false
     t.string   "default_red"
     t.string   "default_yellow"
     t.string   "default_green"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.integer  "operators_count", default: 0
+    t.integer  "watchers_count",  default: 0
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   add_index "lights", ["name"], name: "index_lights_on_name"
@@ -69,6 +71,8 @@ ActiveRecord::Schema.define(version: 20151012155500) do
     t.string   "email",                            null: false
     t.string   "name"
     t.boolean  "admin",            default: false
+    t.integer  "operators_count",  default: 0
+    t.integer  "watchers_count",   default: 0
     t.string   "provider"
     t.string   "uid"
     t.string   "oauth_token"
@@ -76,5 +80,15 @@ ActiveRecord::Schema.define(version: 20151012155500) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
   end
+
+  create_table "watchers", force: :cascade do |t|
+    t.integer  "light_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "watchers", ["light_id"], name: "index_watchers_on_light_id"
+  add_index "watchers", ["user_id"], name: "index_watchers_on_user_id"
 
 end

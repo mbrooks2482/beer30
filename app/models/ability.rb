@@ -37,6 +37,14 @@ class Ability
       can :read, Light
     end
 
+    # Actions only a logged in user can perform
+    unless user.new_record?
+      can :watch, Light
+    end
+    
+    # User can control their own destiny.
+    can :manage, user
+
     user.operators.each do |operator|
       can :manage, operator.light
       can :admin, operator.light if operator.admin

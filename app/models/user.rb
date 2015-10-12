@@ -2,7 +2,9 @@ class User < ActiveRecord::Base
 
   # Associations
   has_many :operators
-  has_many :lights, through: :operators
+  has_many :operating_lights, through: :operators, source: :light
+  has_many :watchers
+  has_many :watching_lights, through: :watchers, source: :light
 
   def self.from_omniauth(auth)
     # Validate the only omniauth logins are allowed from sparcedge.com
