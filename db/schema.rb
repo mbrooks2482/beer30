@@ -41,26 +41,30 @@ ActiveRecord::Schema.define(version: 20151005121705) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
 
   create_table "lights", force: :cascade do |t|
-    t.string   "name",                       null: false
+    t.string   "name",                           null: false
     t.text     "desc"
-    t.string   "state",      default: "red"
-    t.string   "text"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "state",          default: "red"
+    t.string   "text",           default: "",    null: false
+    t.integer  "owner"
+    t.string   "default_red"
+    t.string   "default_yellow"
+    t.string   "default_green"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_index "lights", ["name"], name: "index_lights_on_name"
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",            null: false
+    t.string   "email",                            null: false
     t.string   "name"
-    t.boolean  "admin"
+    t.boolean  "admin",            default: false
     t.string   "provider"
     t.string   "uid"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
 end

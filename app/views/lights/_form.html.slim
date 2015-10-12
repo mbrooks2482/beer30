@@ -2,6 +2,9 @@
   = f.error_notification
 
   .form-inputs
+    = f.collection_radio_buttons(:state, [[:red, 'red'], [:yellow, 'yellow'], [:green, 'green']], :first, :last) { |state| state.label { state.radio_button + image_tag("circles/#{state.text}.png") } }
+    /= f.input :state, collection: [:red, :yellow, :green], as: :radio_buttons
+    = f.input :text, value: ''
 
   .form-actions
     = f.button :submit

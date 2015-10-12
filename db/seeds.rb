@@ -7,4 +7,12 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 me = User.create({email: 'zan.loy@sparcedge.com', name: 'Zan Loy', admin: true})
-beer30 = Light.create({name: 'beer30', owner: me.id})
+beer30 = Light.create(
+  {
+    name: 'beer30',
+    owner: me.id,
+    default_red: 'No drinking allowed.',
+    default_yellow: 'Drinking is allowed but keep it discrete.',
+    default_green: 'Drink up.',
+  }
+)

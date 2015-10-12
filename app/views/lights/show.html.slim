@@ -1,9 +1,17 @@
-- if @light.text
-  .status_text class="alert alert-danger"
-    = @light.text
+/- if @light.text and not @light.text.blank?
+  /.status_text class="alert #{alert_state(@light.state)}"
+    /= @light.text
 
 - if can? :manage, @light
-  p ADMIN!
+  .row.actionbar
+    .col-md-6
+      ' Quick Change:
+      => link_to image_tag('circles/red.png'), change_light_path(@light, :red)
+      => link_to image_tag('circles/yellow.png'), change_light_path(@light, :yellow)
+      => link_to image_tag('circles/green.png'), change_light_path(@light, :green)
+    .col-md-6
+      .pull-right
+        = link_to 'Edit', edit_light_path(@light), class: 'btn btn-default'
 
 .status_light
   = image_tag "lights/#{@light.state}.svg"

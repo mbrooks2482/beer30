@@ -1,21 +1,13 @@
-h1 Listing lights
+h1 Traffic Lights
 
-table
+table.lightstab
   thead
     tr
-      th
-      th
       th
       th
 
   tbody
     - @lights.each do |light|
       tr
-        td = light.name
-        td = link_to 'Show', light
-        td = link_to 'Edit', edit_light_path(light)
-        td = link_to 'Destroy', light, data: {:confirm => 'Are you sure?'}, :method => :delete
-
-br
-
-= link_to 'New Light', new_light_path
+        td = image_tag("circles/#{light.state}.png")
+        td = link_to light.name, light

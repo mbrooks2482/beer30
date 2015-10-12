@@ -1,1 +1,1 @@
-json.extract! @light, :id, :created_at, :updated_at
+json.extract! @light, :id, :name, :state, :text, :updated_at

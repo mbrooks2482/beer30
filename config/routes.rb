@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'lights#show', id: 'beer30'
 
   resources :lights
+  get '/lights/:id/change/:color', to: 'lights#change', as: 'change_light'
 
   resources :sessions, only: [:create, :destroy]
   get 'auth/:provider/callback', to: 'sessions#create'

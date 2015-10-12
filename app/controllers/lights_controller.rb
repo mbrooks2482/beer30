@@ -1,7 +1,7 @@
 class LightsController < ApplicationController
 
   load_and_authorize_resource
-  
+
   before_action :set_light, only: [:show, :edit, :update, :destroy]
 
   # GET /lights
@@ -45,13 +45,22 @@ class LightsController < ApplicationController
   def update
     respond_to do |format|
       if @light.update(light_params)
-        format.html { redirect_to @light, notice: 'Light was successfully updated.' }
+        format.html { redirect_to @light }
         format.json { render :show, status: :ok, location: @light }
       else
         format.html { render :edit }
         format.json { render json: @light.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def change
+    if Light::ALLOWED.include? color_param
+      @light.state = color_param
+      @light.text = ''
+    end
+    @light.save
+    redirect_to light_path(@light)
   end
 
   # DELETE /lights/1
@@ -72,6 +81,11 @@ class LightsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def light_params
-      params[:light]
+      params.require(:light).permit(:name, :state, :text)
     end
+
+    def color_param
+      params.require(:color)
+    end
+
 end
