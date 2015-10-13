@@ -1,13 +1,9 @@
-- if @light.text and not @light.text.blank?
-  .status_text class="alert #{alert_state(@light.state)}"
-    = @light.text
-
 .row.actionbar
   .col-md-6
     - if can? :manage, @light
       = simple_form_for(@light, html: { class: 'form-inline' }) do |f|
         ' Quick Change:
-        => f.input :text, label: false, input_html: { value: '' }
+        => f.input :text, label: false, placeholder: 'Status Text', input_html: { value: '' }
         => f.submit "red", name: 'red', type: :image, src: image_path('circles/red.png')
         => f.submit "yellow", name: 'yellow', type: :image, src: image_path('circles/yellow.png')
         => f.submit "green", name: 'green', type: :image, src: image_path('circles/green.png')
@@ -25,6 +21,9 @@
       - if can? :manage, @light
         => link_to 'Edit', edit_light_path(@light), class: 'btn btn-default'
 
+- if @light.text and not @light.text.blank?
+  .status_text class="alert #{alert_state(@light.state)}"
+    = @light.text
 
 .status_light
   = image_tag "lights/#{@light.state}.svg"

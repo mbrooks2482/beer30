@@ -1,24 +1,23 @@
 = simple_form_for(@light) do |f|
   = f.error_notification
 
-  .form-inputs
-    = f.collection_radio_buttons(:state, [[:red, 'red'], [:yellow, 'yellow'], [:green, 'green']], :first, :last) { |state| state.label { state.radio_button + image_tag("circles/#{state.text}.png") } }
-    = f.input :text, value: ''
+  /.form-inputs
+    /= f.collection_radio_buttons(:state, [[:red, 'red'], [:yellow, 'yellow'], [:green, 'green']], :first, :last) { |state| state.label { state.radio_button + image_tag("circles/#{state.text}.png") } }
+    /= f.input :text, value: ''
 
-  - if can? :admin, @light
-    h2 Default Text
-    = f.input :default_red
-    = f.input :default_yellow
-    = f.input :default_green
+  h2 Default Text
+  = f.input :default_red
+  = f.input :default_yellow
+  = f.input :default_green
 
-    h2 Operators
-    #operators
-      = f.simple_fields_for :operators do |operator|
-        = render 'operator_fields', f: operator
-      .links
-        = link_to_add_association f, :operators do
-          i.octicon.octicon-plus>
-          ' Add Operator
+  h2 Operators
+  #operators
+    = f.simple_fields_for :operators do |operator|
+      = render 'operator_fields', f: operator
+    .links
+      = link_to_add_association f, :operators do
+        i.octicon.octicon-plus>
+        ' Add Operator
 
   .form-actions
     = f.button :submit

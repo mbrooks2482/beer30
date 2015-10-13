@@ -26,8 +26,16 @@ body {
   background-color: black;
 }
 
+.navbar-right {
+  a {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  i { margin-left: 10px; }
+}
+
 .actionbar {
-  margin-top: 15px;
+  margin: 15px;
 
   input {
     vertical-align: middle;

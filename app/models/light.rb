@@ -38,18 +38,20 @@ class Light < ActiveRecord::Base
     self.watchers.where(user: user).count > 0 ? true : false
   end
 
+  def default_text(color)
+    case color
+    when 'red'
+      return default_red
+    when 'yellow'
+      return default_yellow
+    when 'green'
+      return default_green
+    end
+  end
+
   def update_text
     begin
-      if self.text.blank?
-        case self.state_name
-        when :red
-          self.text = self.default_red
-        when :yellow
-          self.text = self.default_yellow
-        when :green
-          self.text = self.default_green
-        end
-      end
+      self.text = default_text(self.state) if self.text.blank?
       self.save
     rescue
     end

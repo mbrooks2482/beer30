@@ -43,7 +43,7 @@ class LightsController < ApplicationController
   def update
     respond_to do |format|
       if @light.update(light_params)
-        @light.fire_state_event(new_state_param)
+        @light.fire_state_event(new_state_param) if new_state_param
         format.html { redirect_to @light }
         format.json { render :show, status: :ok, location: @light }
       else
@@ -84,7 +84,7 @@ class LightsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def light_params
-      params.require(:light).permit(:name, :state, :text, operators_attributes: [:id, :user_id, :admin, :_destroy])
+      params.require(:light).permit(:name, :text, :default_red, :default_yellow, :default_green, operators_attributes: [:id, :user_id, :admin, :_destroy])
     end
 
     def color_param
