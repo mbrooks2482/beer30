@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   get 'signin', to: 'sessions#login', as: 'signin'
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
+  get '/:id', to: 'lights#show'
+
 end
