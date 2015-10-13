@@ -76,4 +76,18 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  Rails.application.routes.default_url_options = { host: 'status.sparcedge.com' }
+
+  # Settings for email
+  config.action_mailer.default_url_options = { protocol: 'http', host: 'status.sparcedge.com' }
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+    api_key: ENV['MAILGUN_APIKEY'],
+    domain: ENV['MAILGUN_DOMAIN'],
+  }
+
+  # Use delayed jobs queue
+  config.active_job.queue_adapter = :delayed_job
+
 end
