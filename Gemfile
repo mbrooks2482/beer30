@@ -4,9 +4,7 @@ ruby '2.1.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
-# Use sqlite3 for database in development
-gem 'sqlite3'
-# Use postgresql for database in production
+# Use postgresql for database
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails'
