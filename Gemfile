@@ -72,6 +72,9 @@ gem 'paperclip', '~> 4.3'
 gem 'bower-rails', '~> 0.10.0'
 
 group :production do
+  # For Heroku
+  gem 'rails_12factor'
+  # To use mailgun for emails in production
   gem 'mailgun_rails'
 end
 
