@@ -4,8 +4,6 @@ ruby '2.1.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
-# Use postgresql for database
-gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
@@ -72,6 +70,8 @@ gem 'paperclip', '~> 4.3'
 gem 'bower-rails', '~> 0.10.0'
 
 group :production do
+  # Use postgresql for database in production
+  gem 'pg'
   # For Heroku
   gem 'rails_12factor'
   # To use mailgun for emails in production
@@ -94,6 +94,8 @@ group :development do
 end
 
 group :development, :test do
+  # Use sqlite database in dev and test
+  gem 'sqlite3'
   # Test with capybara
   gem 'capybara'
   # Use coveralls for code coverage testing

@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20151012184329) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "crono_jobs", force: :cascade do |t|
     t.string   "job_id",            null: false
     t.text     "log"
@@ -25,7 +22,7 @@ ActiveRecord::Schema.define(version: 20151012184329) do
     t.datetime "updated_at",        null: false
   end
 
-  add_index "crono_jobs", ["job_id"], name: "index_crono_jobs_on_job_id", unique: true, using: :btree
+  add_index "crono_jobs", ["job_id"], name: "index_crono_jobs_on_job_id", unique: true
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -41,7 +38,7 @@ ActiveRecord::Schema.define(version: 20151012184329) do
     t.datetime "updated_at"
   end
 
-  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
 
   create_table "lights", force: :cascade do |t|
     t.string   "name",                            null: false
@@ -57,7 +54,7 @@ ActiveRecord::Schema.define(version: 20151012184329) do
     t.datetime "updated_at",                      null: false
   end
 
-  add_index "lights", ["name"], name: "index_lights_on_name", using: :btree
+  add_index "lights", ["name"], name: "index_lights_on_name"
 
   create_table "operators", force: :cascade do |t|
     t.integer  "light_id"
@@ -67,8 +64,8 @@ ActiveRecord::Schema.define(version: 20151012184329) do
     t.datetime "updated_at",                 null: false
   end
 
-  add_index "operators", ["light_id"], name: "index_operators_on_light_id", using: :btree
-  add_index "operators", ["user_id"], name: "index_operators_on_user_id", using: :btree
+  add_index "operators", ["light_id"], name: "index_operators_on_light_id"
+  add_index "operators", ["user_id"], name: "index_operators_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                            null: false
@@ -91,11 +88,7 @@ ActiveRecord::Schema.define(version: 20151012184329) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "watchers", ["light_id"], name: "index_watchers_on_light_id", using: :btree
-  add_index "watchers", ["user_id"], name: "index_watchers_on_user_id", using: :btree
+  add_index "watchers", ["light_id"], name: "index_watchers_on_light_id"
+  add_index "watchers", ["user_id"], name: "index_watchers_on_user_id"
 
-  add_foreign_key "operators", "lights"
-  add_foreign_key "operators", "users"
-  add_foreign_key "watchers", "lights"
-  add_foreign_key "watchers", "users"
 end
