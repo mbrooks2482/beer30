@@ -9,6 +9,7 @@ class Light < ActiveRecord::Base
   has_many :operators
   has_many :users, through: :operators
   has_many :watchers
+  has_many :requests
 
   accepts_nested_attributes_for :operators, reject_if: :all_blank, allow_destroy: true
 

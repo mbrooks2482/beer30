@@ -39,7 +39,7 @@ class Ability
 
     # Actions only a logged in user can perform
     unless user.new_record?
-      can [:watch, :unwatch], Light
+      can [:request, :watch, :unwatch], Light
     end
 
     # User can control their own destiny.

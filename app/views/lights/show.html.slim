@@ -7,6 +7,13 @@
         => f.submit "red", name: 'red', type: :image, src: image_path('circles/red.png')
         => f.submit "yellow", name: 'yellow', type: :image, src: image_path('circles/yellow.png')
         => f.submit "green", name: 'green', type: :image, src: image_path('circles/green.png')
+    - elsif can? :request, @light
+      = simple_form_for([@light, Request.new], html: { class: 'form-inline' }) do |f|
+        ' Request:
+        => f.input :text, label: false, placeholder: 'Suggested Text'
+        => f.submit "red", name: 'red', type: :image, src: image_path('circles/red.png')
+        => f.submit "yellow", name: 'yellow', type: :image, src: image_path('circles/yellow.png')
+        => f.submit "green", name: 'green', type: :image, src: image_path('circles/green.png')
   .col-md-6
     .pull-right
       - if can? :watch, @light
