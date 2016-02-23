@@ -78,6 +78,8 @@ group :production do
   gem 'rails_12factor'
   # To use mailgun for emails in production
   gem 'mailgun_rails'
+  # Workaround for a capistrano requirement
+  gem 'io-console'
 end
 
 group :development do

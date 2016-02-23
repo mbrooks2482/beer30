@@ -3,14 +3,14 @@ lock '3.4.0'
 
 set :stage, :production
 
-set :application, 'picard'
-set :repo_url, 'git@github.com:zanloy/picard.git'
+set :application, 'beer30'
+set :repo_url, 'git@github.com:zanloy/beer30.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory
-set :deploy_to, '/srv/rails/picard'
+set :deploy_to, '/srv/rails/beer30'
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -43,7 +43,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('pids', 'log', 'sockets', 'public
 set :linked_files, %w{.env}
 
 # Fix permissions
-set :file_permissions_paths, ['/srv/rails/picard/shared']
+set :file_permissions_paths, ['/srv/rails/beer30/shared']
 set :file_permissions_user, 'apps'
 
 namespace :foreman do
@@ -52,7 +52,7 @@ namespace :foreman do
   task :export do
     on roles(:app) do
       within release_path do
-        execute :sudo, "/home/apps/.rbenv/shims/foreman export upstart /etc/init -a picard -u apps -l /srv/rails/picard/shared/log"
+        execute :sudo, "/usr/local/bin/foreman export upstart /etc/init -a beer30 -u apps -l /srv/rails/beer30/shared/log"
       end
     end
   end
@@ -60,21 +60,21 @@ namespace :foreman do
   desc 'Start the application services'
   task :start do
     on roles(:app) do
-      execute :sudo, "service picard start"
+      execute :sudo, "service beer30 start"
     end
   end
 
   desc 'Stop the application services'
   task :stop do
     on roles(:app) do
-      execute :sudo, "service picard stop"
+      execute :sudo, "service beer30 stop"
     end
   end
 
   desc 'Restart the application services'
   task :restart do
     on roles(:app) do
-      execute :sudo, "service picard restart"
+      execute :sudo, "service beer30 restart"
     end
   end
 
