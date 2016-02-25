@@ -13,3 +13,6 @@
 #
 # Crono.perform(TestJob).every 2.days, at: '15:30'
 #
+
+Crono.perform(MorningReset).every 1.day, at: '6:00'
+Crono.perform(AfternoonReset).every 1.day at: '17:00'
