@@ -83,6 +83,8 @@ end
 group :development do
   gem 'awesome_print'
   # Deploy with capistrano!
+  gem 'capistrano', '~> 3.1'
+  gem 'capistrano-bundler', '~> 1.1.2'
   gem 'capistrano-crono'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'

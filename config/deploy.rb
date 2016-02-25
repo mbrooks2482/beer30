@@ -52,7 +52,7 @@ namespace :foreman do
   task :export do
     on roles(:app) do
       within release_path do
-        execute :sudo, "/usr/local/bin/foreman export upstart /etc/init -a beer30 -u apps -l /srv/rails/beer30/shared/log"
+        execute :sudo, "/home/apps/.rbenv/shims/foreman export upstart /etc/init -a beer30 -u apps -l /srv/rails/beer30/shared/log"
       end
     end
   end
