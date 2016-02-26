@@ -1,4 +1,4 @@
-class MorningReset < ActiveJob::Base
+class MorningResetJob < ActiveJob::Base
   queue_as :default
 
   def perform(*args)

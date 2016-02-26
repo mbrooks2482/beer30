@@ -14,5 +14,5 @@
 # Crono.perform(TestJob).every 2.days, at: '15:30'
 #
 
-Crono.perform(MorningReset).every 1.day, at: {hour: 6, min: 0}
-Crono.perform(AfternoonReset).every 1.day at: {hour: 17, min: 0}
+Crono.perform(MorningResetJob).every 1.day, at: '06:00'
+Crono.perform(AfternoonReset).every 1.day, at: '17:00'
